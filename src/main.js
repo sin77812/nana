@@ -117,10 +117,64 @@ class NanaMagazine {
       
       <div class="collection-page" id="collectionPage">
         <div class="collection-container">
-          <!-- Collection Header -->
+          <!-- Collection Header with Search -->
           <section class="collection-header">
-            <h1 class="collection-title">Spring Collection 2025</h1>
-            <p class="collection-subtitle">Discover the essence of kawaii minimalism</p>
+            <div class="collection-header-content">
+              <h1 class="collection-title">Spring Collection 2025</h1>
+              <p class="collection-subtitle">Discover the essence of kawaii minimalism</p>
+            </div>
+            <div class="collection-search">
+              <div class="search-wrapper">
+                <input type="text" id="collectionSearch" class="search-input" placeholder="아이템 검색...">
+                <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none">
+                  <circle cx="11" cy="11" r="8" stroke="currentColor" stroke-width="2"/>
+                  <path d="m21 21-4.35-4.35" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+            </div>
+          </section>
+          
+          <!-- Category Navigation -->
+          <section class="collection-navigation">
+            <div class="category-filters">
+              <button class="category-filter active" data-category="all">
+                <span class="filter-text">모든 상품</span>
+                <span class="filter-count" id="countAll">0</span>
+              </button>
+              <button class="category-filter" data-category="tops">
+                <span class="filter-text">상의</span>
+                <span class="filter-count" id="countTops">0</span>
+              </button>
+              <button class="category-filter" data-category="bottoms">
+                <span class="filter-text">하의</span>
+                <span class="filter-count" id="countBottoms">0</span>
+              </button>
+              <button class="category-filter" data-category="outerwear">
+                <span class="filter-text">아우터</span>
+                <span class="filter-count" id="countOuterwear">0</span>
+              </button>
+              <button class="category-filter" data-category="dresses">
+                <span class="filter-text">원피스</span>
+                <span class="filter-count" id="countDresses">0</span>
+              </button>
+              <button class="category-filter" data-category="accessories">
+                <span class="filter-text">악세서리</span>
+                <span class="filter-count" id="countAccessories">0</span>
+              </button>
+              <button class="category-filter" data-category="shoes">
+                <span class="filter-text">신발</span>
+                <span class="filter-count" id="countShoes">0</span>
+              </button>
+            </div>
+            <div class="sort-options">
+              <select id="collectionSort" class="sort-select">
+                <option value="featured">추천순</option>
+                <option value="price-low">가격 낮은순</option>
+                <option value="price-high">가격 높은순</option>
+                <option value="newest">최신순</option>
+                <option value="popular">인기순</option>
+              </select>
+            </div>
           </section>
           
           <!-- Featured Items Editorial -->
@@ -1205,6 +1259,9 @@ class NanaMagazine {
     if (collectionPage) {
       collectionPage.classList.add('active');
       this.populateCollectionProducts();
+      this.setupCollectionFilters();
+      this.setupCollectionSearch();
+      this.updateCategoryCounts();
       
       // Animate entrance
       gsap.from('.collection-header', {
@@ -1422,18 +1479,24 @@ class NanaMagazine {
     const sizes = ['small', 'medium', 'large', 'tall', 'wide'];
     const rotations = ['rotate-left', 'rotate-right', 'no-rotate'];
     const collectionProducts = [
-      { id: 101, name: 'Sakura Pink Dress', price: 18900, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=600&fit=crop', badge: 'NEW', size: 'large', rotation: 'rotate-left', colors: ['#FFB7C5', '#FADADD', '#E6E6FA'] },
-      { id: 102, name: 'Cloud White Blouse', price: 12400, image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=600&fit=crop', size: 'small', rotation: 'no-rotate', colors: ['#F8F8FF', '#E6E6FA', '#87CEEB'] },
-      { id: 103, name: 'Morning Sky Cardigan', price: 15600, image: 'https://images.unsplash.com/photo-1588863845063-b4eb8c4ab4eb?w=400&h=600&fit=crop', badge: 'BEST', size: 'tall', rotation: 'no-rotate', colors: ['#87CEEB', '#98FB98', '#FFB7C5'] },
-      { id: 104, name: 'Pearl Button Coat', price: 24800, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop', size: 'wide', rotation: 'rotate-right', colors: ['#F8F8FF', '#FADADD'] },
-      { id: 105, name: 'Kawaii Mini Skirt', price: 9800, image: 'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400&h=600&fit=crop', size: 'medium', rotation: 'rotate-left', colors: ['#FFB7C5', '#E6E6FA', '#98FB98'] },
-      { id: 106, name: 'Pastel Knit Sweater', price: 16500, image: 'https://images.unsplash.com/photo-1566479179817-0e7c6c46d14d?w=400&h=600&fit=crop', badge: 'NEW', size: 'small', rotation: 'no-rotate', colors: ['#FADADD', '#87CEEB', '#FFB7C5'] },
-      { id: 107, name: 'Dream Tulle Dress', price: 22300, image: 'https://images.unsplash.com/photo-1565084888279-aca607ecce0c?w=400&h=600&fit=crop', size: 'large', rotation: 'rotate-right', colors: ['#E6E6FA', '#FFB7C5', '#98FB98'] },
-      { id: 108, name: 'Minimalist Blazer', price: 19700, image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400&h=600&fit=crop', size: 'medium', rotation: 'no-rotate', colors: ['#F8F8FF', '#E6E6FA'] },
-      { id: 109, name: 'Ethereal Chiffon Top', price: 14200, image: 'https://images.unsplash.com/photo-1551803091-e20673f15770?w=400&h=600&fit=crop', size: 'tall', rotation: 'rotate-left', colors: ['#FADADD', '#87CEEB', '#E6E6FA'] },
-      { id: 110, name: 'Vintage Denim Jacket', price: 21800, image: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5e?w=400&h=600&fit=crop', badge: 'VINTAGE', size: 'wide', rotation: 'no-rotate', colors: ['#87CEEB', '#98FB98'] },
-      { id: 111, name: 'Silk Midi Skirt', price: 17900, image: 'https://images.unsplash.com/photo-1583496661160-fb5886a13d91?w=400&h=600&fit=crop', size: 'small', rotation: 'rotate-right', colors: ['#FFB7C5', '#FADADD', '#E6E6FA'] },
-      { id: 112, name: 'Cashmere Sweater', price: 28500, image: 'https://images.unsplash.com/photo-1619701669995-b8ad299c752b?w=400&h=600&fit=crop', badge: 'LUXURY', size: 'medium', rotation: 'rotate-left', colors: ['#FADADD', '#E6E6FA', '#F8F8FF'] }
+      { id: 101, name: 'Sakura Pink Dress', price: 18900, image: 'https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=400&h=600&fit=crop', badge: 'NEW', size: 'large', rotation: 'rotate-left', colors: ['#FFB7C5', '#FADADD', '#E6E6FA'], category: 'dresses' },
+      { id: 102, name: 'Cloud White Blouse', price: 12400, image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=600&fit=crop', size: 'small', rotation: 'no-rotate', colors: ['#F8F8FF', '#E6E6FA', '#87CEEB'], category: 'tops' },
+      { id: 103, name: 'Morning Sky Cardigan', price: 15600, image: 'https://images.unsplash.com/photo-1588863845063-b4eb8c4ab4eb?w=400&h=600&fit=crop', badge: 'BEST', size: 'tall', rotation: 'no-rotate', colors: ['#87CEEB', '#98FB98', '#FFB7C5'], category: 'outerwear' },
+      { id: 104, name: 'Pearl Button Coat', price: 24800, image: 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=400&h=600&fit=crop', size: 'wide', rotation: 'rotate-right', colors: ['#F8F8FF', '#FADADD'], category: 'outerwear' },
+      { id: 105, name: 'Kawaii Mini Skirt', price: 9800, image: 'https://images.unsplash.com/photo-1583744946564-b52ac1c389c8?w=400&h=600&fit=crop', size: 'medium', rotation: 'rotate-left', colors: ['#FFB7C5', '#E6E6FA', '#98FB98'], category: 'bottoms' },
+      { id: 106, name: 'Pastel Knit Sweater', price: 16500, image: 'https://images.unsplash.com/photo-1566479179817-0e7c6c46d14d?w=400&h=600&fit=crop', badge: 'NEW', size: 'small', rotation: 'no-rotate', colors: ['#FADADD', '#87CEEB', '#FFB7C5'], category: 'tops' },
+      { id: 107, name: 'Dream Tulle Dress', price: 22300, image: 'https://images.unsplash.com/photo-1565084888279-aca607ecce0c?w=400&h=600&fit=crop', size: 'large', rotation: 'rotate-right', colors: ['#E6E6FA', '#FFB7C5', '#98FB98'], category: 'dresses' },
+      { id: 108, name: 'Minimalist Blazer', price: 19700, image: 'https://images.unsplash.com/photo-1539008835657-9e8e9680c956?w=400&h=600&fit=crop', size: 'medium', rotation: 'no-rotate', colors: ['#F8F8FF', '#E6E6FA'], category: 'outerwear' },
+      { id: 109, name: 'Ethereal Chiffon Top', price: 14200, image: 'https://images.unsplash.com/photo-1551803091-e20673f15770?w=400&h=600&fit=crop', size: 'tall', rotation: 'rotate-left', colors: ['#FADADD', '#87CEEB', '#E6E6FA'], category: 'tops' },
+      { id: 110, name: 'Vintage Denim Jacket', price: 21800, image: 'https://images.unsplash.com/photo-1544966503-7cc5ac882d5e?w=400&h=600&fit=crop', badge: 'VINTAGE', size: 'wide', rotation: 'no-rotate', colors: ['#87CEEB', '#98FB98'], category: 'outerwear' },
+      { id: 111, name: 'Silk Midi Skirt', price: 17900, image: 'https://images.unsplash.com/photo-1583496661160-fb5886a13d91?w=400&h=600&fit=crop', size: 'small', rotation: 'rotate-right', colors: ['#FFB7C5', '#FADADD', '#E6E6FA'], category: 'bottoms' },
+      { id: 112, name: 'Cashmere Sweater', price: 28500, image: 'https://images.unsplash.com/photo-1619701669995-b8ad299c752b?w=400&h=600&fit=crop', badge: 'LUXURY', size: 'medium', rotation: 'rotate-left', colors: ['#FADADD', '#E6E6FA', '#F8F8FF'], category: 'tops' },
+      { id: 113, name: 'Wide Leg Pants', price: 16800, image: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&h=600&fit=crop', size: 'tall', rotation: 'no-rotate', colors: ['#87CEEB', '#F8F8FF'], category: 'bottoms' },
+      { id: 114, name: 'Pearl Necklace', price: 12900, image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&h=600&fit=crop', size: 'small', rotation: 'rotate-right', colors: ['#F8F8FF', '#E6E6FA'], category: 'accessories' },
+      { id: 115, name: 'Kawaii Hair Clips', price: 3200, image: 'https://images.unsplash.com/photo-1583496661160-fb5886a13d91?w=400&h=600&fit=crop', badge: 'CUTE', size: 'small', rotation: 'rotate-left', colors: ['#FFB7C5', '#FADADD'], category: 'accessories' },
+      { id: 116, name: 'Platform Sneakers', price: 18500, image: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=600&fit=crop', size: 'medium', rotation: 'no-rotate', colors: ['#F8F8FF', '#FFB7C5'], category: 'shoes' },
+      { id: 117, name: 'Mary Jane Shoes', price: 22400, image: 'https://images.unsplash.com/photo-1603487742131-4160ec999306?w=400&h=600&fit=crop', badge: 'RETRO', size: 'small', rotation: 'rotate-right', colors: ['#FFB7C5', '#E6E6FA'], category: 'shoes' },
+      { id: 118, name: 'Lace Handbag', price: 15700, image: 'https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&h=600&fit=crop', size: 'medium', rotation: 'rotate-left', colors: ['#FADADD', '#F8F8FF'], category: 'accessories' }
     ];
     
     return collectionProducts;
@@ -1443,7 +1506,7 @@ class NanaMagazine {
     const badgeHTML = product.badge ? `<span class="collection-product-badge">${product.badge}</span>` : '';
     
     return `
-      <div class="collection-product-card ${product.size} ${product.rotation}" data-id="${product.id}" onclick="window.nana.showProductDetail('${product.id}')">
+      <div class="collection-product-card ${product.size} ${product.rotation}" data-id="${product.id}" data-category="${product.category}" onclick="window.nana.showProductDetail('${product.id}')">`
         <div class="collection-product-image-wrapper">
           <img src="${product.image}" alt="${product.name}" class="collection-product-image">
           ${badgeHTML}
@@ -2765,6 +2828,173 @@ class NanaMagazine {
       console.error('Token verification failed:', error);
       this.logout();
     }
+  }
+  
+  // Collection filtering and search functions
+  setupCollectionFilters() {
+    const filterButtons = document.querySelectorAll('.category-filter');
+    
+    // Set "모든 상품" as active by default
+    const allButton = Array.from(filterButtons).find(btn => btn.dataset.category === 'all');
+    if (allButton) {
+      allButton.classList.add('active');
+    }
+    
+    // Show all products initially
+    this.filterCollectionProducts('all');
+    
+    filterButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        // Remove active class from all buttons
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        // Add active class to clicked button
+        e.target.closest('.category-filter').classList.add('active');
+        
+        const category = e.target.closest('.category-filter').dataset.category;
+        this.filterCollectionProducts(category);
+      });
+    });
+  }
+  
+  setupCollectionSearch() {
+    const searchInput = document.getElementById('collectionSearch');
+    const sortSelect = document.getElementById('collectionSort');
+    
+    if (searchInput) {
+      let searchTimeout;
+      searchInput.addEventListener('input', (e) => {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          this.searchCollectionProducts(e.target.value);
+        }, 300);
+      });
+    }
+    
+    if (sortSelect) {
+      sortSelect.addEventListener('change', (e) => {
+        this.sortCollectionProducts(e.target.value);
+      });
+    }
+  }
+  
+  filterCollectionProducts(category) {
+    const cards = document.querySelectorAll('.collection-product-card');
+    
+    cards.forEach(card => {
+      const cardCategory = card.dataset.category;
+      const shouldShow = category === 'all' || cardCategory === category;
+      
+      if (shouldShow) {
+        gsap.to(card, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+        card.style.display = 'block';
+      } else {
+        gsap.to(card, {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+  }
+  
+  searchCollectionProducts(searchTerm) {
+    const cards = document.querySelectorAll('.collection-product-card');
+    const term = searchTerm.toLowerCase();
+    
+    cards.forEach(card => {
+      const productName = card.querySelector('.collection-product-name').textContent.toLowerCase();
+      const shouldShow = productName.includes(term) || term === '';
+      
+      if (shouldShow) {
+        gsap.to(card, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+        card.style.display = 'block';
+      } else {
+        gsap.to(card, {
+          opacity: 0,
+          scale: 0.95,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            card.style.display = 'none';
+          }
+        });
+      }
+    });
+  }
+  
+  sortCollectionProducts(sortBy) {
+    const grid = document.getElementById('collectionProductsGrid');
+    const cards = Array.from(grid.children);
+    
+    cards.sort((a, b) => {
+      const priceA = parseInt(a.querySelector('.collection-product-price').textContent.replace(/[¥,]/g, ''));
+      const priceB = parseInt(b.querySelector('.collection-product-price').textContent.replace(/[¥,]/g, ''));
+      const nameA = a.querySelector('.collection-product-name').textContent;
+      const nameB = b.querySelector('.collection-product-name').textContent;
+      
+      switch (sortBy) {
+        case 'price-low':
+          return priceA - priceB;
+        case 'price-high':
+          return priceB - priceA;
+        case 'name-asc':
+          return nameA.localeCompare(nameB);
+        case 'newest':
+          // Reverse order for newest (assuming order in array represents newness)
+          return Array.from(grid.children).indexOf(b) - Array.from(grid.children).indexOf(a);
+        default:
+          return 0; // featured - keep original order
+      }
+    });
+    
+    // Reorder DOM elements
+    cards.forEach(card => grid.appendChild(card));
+    
+    // Animate reordering
+    gsap.from(cards, {
+      opacity: 0,
+      y: 20,
+      duration: 0.4,
+      stagger: 0.03,
+      ease: "power2.out"
+    });
+  }
+  
+  updateCategoryCounts() {
+    if (!this.collectionProducts) {
+      this.collectionProducts = this.generateCollectionProducts();
+    }
+    
+    const counts = {
+      all: this.collectionProducts.length,
+      tops: this.collectionProducts.filter(p => p.category === 'tops').length,
+      bottoms: this.collectionProducts.filter(p => p.category === 'bottoms').length,
+      outerwear: this.collectionProducts.filter(p => p.category === 'outerwear').length,
+      dresses: this.collectionProducts.filter(p => p.category === 'dresses').length,
+      accessories: this.collectionProducts.filter(p => p.category === 'accessories').length,
+      shoes: this.collectionProducts.filter(p => p.category === 'shoes').length
+    };
+    
+    Object.keys(counts).forEach(category => {
+      const countElement = document.getElementById(`count${category.charAt(0).toUpperCase() + category.slice(1)}`);
+      if (countElement) {
+        countElement.textContent = counts[category];
+      }
+    });
   }
 }
 
