@@ -1717,6 +1717,15 @@ class NanaMagazine {
   setupLifestyleFilters() {
     const filterTabs = document.querySelectorAll('.category-tab');
     
+    // Set "All Categories" as active by default
+    const allTab = Array.from(filterTabs).find(tab => tab.dataset.category === 'all');
+    if (allTab) {
+      allTab.classList.add('active');
+    }
+    
+    // Show all articles initially
+    this.filterLifestyleArticles('all');
+    
     filterTabs.forEach(tab => {
       tab.addEventListener('click', (e) => {
         // Remove active class from all tabs
