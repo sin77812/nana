@@ -29,6 +29,7 @@ class NanaMagazine {
     
     setTimeout(() => {
       this.hideLoadingScreen();
+      this.showHomePage(); // Show homepage after loading
     }, 2000);
   }
   
@@ -2262,7 +2263,7 @@ class NanaMagazine {
     const rememberMe = document.getElementById('rememberMe').checked;
     
     try {
-      const response = await fetch('http://localhost:5001/api/auth/login', {
+      const response = await fetch('/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2332,7 +2333,7 @@ class NanaMagazine {
   async handleGoogleCallback(response) {
     try {
       // Send credential to backend
-      const res = await fetch('http://localhost:5001/api/auth/google', {
+      const res = await fetch('/api/auth/google', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2418,7 +2419,7 @@ class NanaMagazine {
     }
     
     try {
-      const response = await fetch('http://localhost:5001/api/auth/register', {
+      const response = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -2735,7 +2736,7 @@ class NanaMagazine {
   
   async verifyToken(token) {
     try {
-      const response = await fetch('http://localhost:5001/api/auth/me', {
+      const response = await fetch('/api/auth/me', {
         headers: {
           'Authorization': `Bearer ${token}`
         }
