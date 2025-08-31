@@ -587,6 +587,8 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   background: var(--hero-gradient);
   isolation: isolate;
+  margin-top: -80px;
+  padding-top: 80px;
 }
 
 .bubble-canvas {
@@ -3038,7 +3040,7 @@ h1, h2, h3, h4, h5, h6 {
   display: none;
   min-height: 100vh;
   background: var(--cloud-white);
-  padding-top: 100px;
+  padding-top: 60px;
 }
 
 .about-page.active {
@@ -3053,14 +3055,14 @@ h1, h2, h3, h4, h5, h6 {
 
 /* About Hero Section */
 .about-hero {
-  min-height: 60vh;
+  min-height: 35vh;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: center;
-  padding: 2rem 0;
+  padding: 1rem 0;
   border-bottom: 1px solid rgba(0,0,0,0.05);
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
 }
 
 .about-hero-content {
@@ -3152,7 +3154,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Brand Philosophy */
 .brand-philosophy {
-  margin: 4rem 0;
+  margin: 2rem 0 3rem 0;
 }
 
 .philosophy-grid {
