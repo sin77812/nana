@@ -1506,7 +1506,7 @@ class NanaMagazine {
     const badgeHTML = product.badge ? `<span class="collection-product-badge">${product.badge}</span>` : '';
     
     return `
-      <div class="collection-product-card ${product.size} ${product.rotation}" data-id="${product.id}" data-category="${product.category}" onclick="window.nana.showProductDetail('${product.id}')">`
+      <div class="collection-product-card ${product.size} ${product.rotation}" data-id="${product.id}" data-category="${product.category}" onclick="window.nana.showProductDetail('${product.id}')">
         <div class="collection-product-image-wrapper">
           <img src="${product.image}" alt="${product.name}" class="collection-product-image">
           ${badgeHTML}
