@@ -24,6 +24,9 @@
     "japanese",
     "kawaii"
   ],
+  "engines": {
+    "node": "18.x"
+  },
   "author": "NANA Team",
   "license": "MIT"
 }
