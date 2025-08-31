@@ -1,0 +1,29 @@
+{
+  "name": "nana-editorial-commerce",
+  "version": "1.0.0",
+  "description": "NANA - Editorial Commerce Platform",
+  "main": "index.html",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static site - no build needed'",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  },
+  "keywords": [
+    "editorial",
+    "commerce",
+    "fashion",
+    "japanese",
+    "kawaii"
+  ],
+  "author": "NANA Team",
+  "license": "MIT"
+}
