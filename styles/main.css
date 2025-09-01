@@ -2176,32 +2176,55 @@ h1, h2, h3, h4, h5, h6 {
 /* Beauty Categories */
 .beauty-categories {
   margin: 4rem 0;
-  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 183, 197, 0.1);
+  border-bottom: 1px solid rgba(255, 183, 197, 0.1);
 }
 
-.category-filters {
+.beauty-categories .category-filters {
   display: flex;
-  gap: 1rem;
+  gap: 2.5rem;
   justify-content: center;
   flex-wrap: wrap;
+  align-items: center;
 }
 
-.category-btn {
-  background: transparent;
-  color: var(--text-secondary);
-  border: 2px solid var(--text-secondary);
-  padding: 0.75rem 1.5rem;
-  border-radius: 25px;
+.beauty-categories .category-filter {
+  display: inline-block;
+  padding: 0.5rem 0;
+  border: none;
+  background: none;
+  color: #999;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-family: 'Helvetica Neue', sans-serif;
+  text-decoration: none;
+  outline: none;
+  position: relative;
+}
+
+.beauty-categories .category-filter:hover {
+  color: var(--text-primary);
+}
+
+.beauty-categories .category-filter.active {
+  color: var(--text-primary);
   font-weight: 500;
 }
 
-.category-btn.active,
-.category-btn:hover {
+.beauty-categories .category-filter.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
   background: var(--nana-pink);
-  color: white;
-  border-color: var(--nana-pink);
+  animation: slideIn 0.3s ease;
 }
 
 /* Beauty Lookbook */
@@ -2516,9 +2539,9 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0.5rem;
   }
   
-  .category-btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
+  .beauty-categories .category-filter {
+    font-size: 0.75rem;
+    gap: 1.5rem;
   }
 }
 

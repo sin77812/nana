@@ -225,12 +225,12 @@ class NanaMagazine {
           <!-- Categories Filter -->
           <section class="beauty-categories">
             <div class="category-filters">
-              <button class="category-btn active" data-category="all">All Products</button>
-              <button class="category-btn" data-category="skincare">Skincare</button>
-              <button class="category-btn" data-category="makeup">Makeup</button>
-              <button class="category-btn" data-category="lips">Lips</button>
-              <button class="category-btn" data-category="eyes">Eyes</button>
-              <button class="category-btn" data-category="tools">Tools</button>
+              <button class="category-filter active" data-category="all">ALL PRODUCTS</button>
+              <button class="category-filter" data-category="skincare">SKINCARE</button>
+              <button class="category-filter" data-category="makeup">MAKEUP</button>
+              <button class="category-filter" data-category="lips">LIPS</button>
+              <button class="category-filter" data-category="eyes">EYES</button>
+              <button class="category-filter" data-category="tools">TOOLS</button>
             </div>
           </section>
           
@@ -1516,7 +1516,7 @@ class NanaMagazine {
   }
   
   setupBeautyFilters() {
-    const filterButtons = document.querySelectorAll('.category-btn');
+    const filterButtons = document.querySelectorAll('.beauty-categories .category-filter');
     
     filterButtons.forEach(btn => {
       btn.addEventListener('click', (e) => {
