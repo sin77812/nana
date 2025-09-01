@@ -70,68 +70,60 @@
 
 .category-filters {
   display: flex;
-  gap: 0.5rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .category-filter {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.25rem;
-  border: 1px solid rgba(255, 183, 197, 0.3);
-  border-radius: 20px;
-  background: rgba(248, 248, 255, 0.5);
-  backdrop-filter: blur(10px);
-  color: var(--text-primary);
+  display: inline-block;
+  padding: 0.5rem 0;
+  border: none;
+  background: none;
+  color: #999;
   font-size: 0.85rem;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-family: 'Noto Sans JP', sans-serif;
+  font-family: 'Helvetica Neue', sans-serif;
   text-decoration: none;
   outline: none;
+  position: relative;
 }
 
 .category-filter:hover {
-  background: rgba(255, 183, 197, 0.1);
-  border-color: var(--nana-pink);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(255, 183, 197, 0.2);
+  color: var(--text-primary);
 }
 
 .category-filter.active {
-  background: linear-gradient(135deg, var(--nana-pink), var(--powder-pink));
-  border-color: var(--nana-pink);
-  color: white;
-  box-shadow: 0 4px 20px rgba(255, 183, 197, 0.3);
+  color: var(--text-primary);
+  font-weight: 500;
 }
 
-.category-filter.active:hover {
-  background: linear-gradient(135deg, var(--nana-pink), var(--morning-sky));
-  transform: translateY(-2px);
-  box-shadow: 0 6px 25px rgba(255, 183, 197, 0.4);
+.category-filter.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--nana-pink);
+  animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
 }
 
 .filter-text {
-  font-weight: 600;
-}
-
-.filter-count {
-  background: rgba(255, 255, 255, 0.9);
-  color: var(--text-primary);
-  padding: 0.2rem 0.5rem;
-  border-radius: 10px;
-  font-size: 0.7rem;
-  font-weight: 700;
-  min-width: 20px;
-  text-align: center;
-  line-height: 1;
-}
-
-.category-filter.active .filter-count {
-  background: rgba(255, 255, 255, 1);
-  color: var(--nana-pink);
+  font-weight: inherit;
 }
 
 /* Sort Options */

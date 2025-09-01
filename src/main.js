@@ -137,33 +137,32 @@ class NanaMagazine {
           <!-- Category Navigation -->
           <section class="collection-navigation">
             <div class="category-filters">
-              <button class="category-filter active" data-category="all">
-                <span class="filter-text">모든 상품</span>
-                <span class="filter-count" id="countAll">0</span>
+              <button class="category-filter active" data-category="new">
+                <span class="filter-text">NEW IN</span>
               </button>
-              <button class="category-filter" data-category="tops">
-                <span class="filter-text">상의</span>
-                <span class="filter-count" id="countTops">0</span>
+              <button class="category-filter" data-category="all">
+                <span class="filter-text">VIEW ALL</span>
               </button>
-              <button class="category-filter" data-category="bottoms">
-                <span class="filter-text">하의</span>
-                <span class="filter-count" id="countBottoms">0</span>
-              </button>
-              <button class="category-filter" data-category="outerwear">
-                <span class="filter-text">아우터</span>
-                <span class="filter-count" id="countOuterwear">0</span>
+              <button class="category-filter" data-category="outer">
+                <span class="filter-text">OUTER</span>
               </button>
               <button class="category-filter" data-category="dresses">
-                <span class="filter-text">원피스</span>
-                <span class="filter-count" id="countDresses">0</span>
+                <span class="filter-text">DRESSES & SKIRTS</span>
               </button>
-              <button class="category-filter" data-category="accessories">
-                <span class="filter-text">악세서리</span>
-                <span class="filter-count" id="countAccessories">0</span>
+              <button class="category-filter" data-category="tops">
+                <span class="filter-text">TOPS</span>
+              </button>
+              <button class="category-filter" data-category="pants">
+                <span class="filter-text">PANTS & DENIM</span>
+              </button>
+              <button class="category-filter" data-category="knitwear">
+                <span class="filter-text">KNITWEAR</span>
               </button>
               <button class="category-filter" data-category="shoes">
-                <span class="filter-text">신발</span>
-                <span class="filter-count" id="countShoes">0</span>
+                <span class="filter-text">SHOES & HANDBAGS</span>
+              </button>
+              <button class="category-filter" data-category="accessories">
+                <span class="filter-text">OTHER ACCESSORIES</span>
               </button>
             </div>
             <div class="sort-options">
@@ -215,12 +214,6 @@ class NanaMagazine {
               </div>
             </div>
             
-            <div class="editorial-quote">
-              <blockquote>
-                "Fashion is not just about clothes, it's about expressing your inner beauty."
-                <cite>— NANA Editorial Team</cite>
-              </blockquote>
-            </div>
           </section>
           
           <!-- Main Product Grid -->
@@ -2834,14 +2827,14 @@ class NanaMagazine {
   setupCollectionFilters() {
     const filterButtons = document.querySelectorAll('.category-filter');
     
-    // Set "모든 상품" as active by default
-    const allButton = Array.from(filterButtons).find(btn => btn.dataset.category === 'all');
-    if (allButton) {
-      allButton.classList.add('active');
+    // Set "NEW IN" as active by default
+    const newButton = Array.from(filterButtons).find(btn => btn.dataset.category === 'new');
+    if (newButton) {
+      newButton.classList.add('active');
     }
     
-    // Show all products initially
-    this.filterCollectionProducts('all');
+    // Show new products initially
+    this.filterCollectionProducts('new');
     
     filterButtons.forEach(button => {
       button.addEventListener('click', (e) => {
@@ -2882,7 +2875,10 @@ class NanaMagazine {
     
     cards.forEach(card => {
       const cardCategory = card.dataset.category;
-      const shouldShow = category === 'all' || cardCategory === category;
+      const cardIsNew = card.dataset.isNew === 'true';
+      const shouldShow = category === 'all' || 
+                        (category === 'new' && cardIsNew) ||
+                        cardCategory === category;
       
       if (shouldShow) {
         gsap.to(card, {
