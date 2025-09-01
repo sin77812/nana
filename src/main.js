@@ -176,46 +176,6 @@ class NanaMagazine {
             </div>
           </section>
           
-          <!-- Featured Items Editorial -->
-          <section class="featured-editorial">
-            <div class="editorial-main">
-              <div class="main-feature">
-                <div class="feature-image-wrapper">
-                  <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop" alt="Sakura Pink Dress" class="feature-image">
-                  <div class="feature-badge">Editor's Pick</div>
-                </div>
-                <div class="feature-content">
-                  <span class="feature-category">Spring Essential</span>
-                  <h2 class="feature-title">Sakura Pink Dress</h2>
-                  <p class="feature-description">봄의 시작을 알리는 벚꽃 핑크 드레스. 일본 전통 미의식과 현대적 실루엣이 조화를 이룬 시그니처 아이템.</p>
-                  <div class="feature-price">¥18,900</div>
-                  <button class="feature-btn" data-product-id="101">Add to Cart</button>
-                </div>
-              </div>
-              
-              <div class="secondary-features">
-                <div class="mini-feature">
-                  <img src="https://images.unsplash.com/photo-1588863845063-b4eb8c4ab4eb?w=300&h=400&fit=crop" alt="Morning Sky Cardigan" class="mini-feature-image">
-                  <div class="mini-feature-content">
-                    <h3>Morning Sky Cardigan</h3>
-                    <p>하늘빛 카디건</p>
-                    <span class="mini-price">¥15,600</span>
-                  </div>
-                </div>
-                
-                <div class="mini-feature">
-                  <img src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=300&h=400&fit=crop" alt="Pearl Button Coat" class="mini-feature-image">
-                  <div class="mini-feature-content">
-                    <h3>Pearl Button Coat</h3>
-                    <p>진주 단추 코트</p>
-                    <span class="mini-price">¥24,800</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-          </section>
-          
           <!-- Main Product Grid -->
           <section class="main-products">
             <div class="products-grid" id="collectionProductsGrid">
@@ -1261,49 +1221,6 @@ class NanaMagazine {
         opacity: 0,
         y: 30,
         duration: 0.8,
-        ease: "power2.out"
-      });
-      
-      // Animate editorial section
-      gsap.from('.featured-editorial', {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        delay: 0.3,
-        ease: "power2.out"
-      });
-      
-      gsap.from('.feature-image-wrapper', {
-        opacity: 0,
-        scale: 0.95,
-        duration: 0.8,
-        delay: 0.5,
-        ease: "power2.out"
-      });
-      
-      gsap.from('.feature-content > *', {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        stagger: 0.1,
-        delay: 0.7,
-        ease: "power2.out"
-      });
-      
-      gsap.from('.mini-feature', {
-        opacity: 0,
-        x: 30,
-        duration: 0.6,
-        stagger: 0.2,
-        delay: 0.9,
-        ease: "power2.out"
-      });
-      
-      gsap.from('.editorial-quote', {
-        opacity: 0,
-        y: 30,
-        duration: 0.8,
-        delay: 1.1,
         ease: "power2.out"
       });
       
