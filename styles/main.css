@@ -587,8 +587,6 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: center;
   background: var(--hero-gradient);
   isolation: isolate;
-  margin-top: -80px;
-  padding-top: 80px;
 }
 
 .bubble-canvas {
@@ -607,6 +605,10 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
   padding: 2rem;
   animation: fadeInUp 1s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes fadeInUp {
